@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Zenkore</title>
+    <title>Zenkore Blogs</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -46,45 +46,28 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link active" href="{% url 'home' %}">Home</a>
-                <a class="nav-item nav-link" href="{% static 'Logo Final.pdf'%} ">Resume</a>
-                <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                <a class="nav-item nav-link" href="{% static 'Logo Final.pdf'%}">Resume</a>
+                <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
               </div>
             </div>
           </nav>
     </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">Hello there!</h1>
-      <p class="lead text-muted">Yo! My Name is Zenkore</p>
-      <p>
-        <a href="mailto:zenkore@example.com" class="btn btn-primary my-2">Email</a>
-      </p>
-      <img src="{% static 'Spongebob.jpg'%}" width="200px">
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-        {% for jobs in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ jobs.image.url }}" alt="">
-            <div class="card-body">
-              <p class="card-text">{{ jobs.summary }}</p>
-            </div>
-          </div>
-        </div>
+        <h1 class="text-center pt-3">Welcome to my Blogs</h1>
+        <br>
+        <br>
+        <h2>Latest Posts</h2>
+        <hr>
+        {% for blog in allblogs.all %}
+            <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+            {{ blog.pub_date_pretty }}
+            <br>
+            <img class="img-fluid" src="{{blog.image.url}}" width="100px">
+            <p>{{ blog.summary }}</p>
         {% endfor %}
-      </div>
     </div>
-  </div>
-
 </main>
 
 <footer class="text-muted">
